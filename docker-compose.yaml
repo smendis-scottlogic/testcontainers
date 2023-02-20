@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mydata:/home/db/data/mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  postgresql:
+    image: postgres
+    container_name: pg_container
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - mydata:/home/db/data/postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: consultants
+
+volumes:
+  mydata: {}
